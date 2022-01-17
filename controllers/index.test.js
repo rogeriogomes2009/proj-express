@@ -59,7 +59,7 @@ describe('index Controller', () => {
       }
     }
     let mock = sinon.mock(res)
-    mock.expects('send').once().withArgs('A soma é: 30')
+    mock.expects('send').once().withArgs('A soma é:30')
     indexController.calc(req, res)
   })
  })
