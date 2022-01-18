@@ -5,24 +5,34 @@ const sinon = require('sinon')
 describe('index Controller', () => {
   it('Home', () => {
     let res = {
-      send: function (){}
+      render: function (){}
+    }
+    let data = {
+      lista: ['Rogerio', 'Gomes', 'Teste'],
+      animais: [
+       { name: 'Cachorro' },
+       { name: 'Gato' },
+       { name: 'Galinha' },
+       { name: 'Cavalo' }
+      ]
     }
     let mock = sinon.mock(res)
-    mock.expects('send').once().withArgs('Eu sou FULLSTACK')
+    mock.expects('render').once().withArgs('home', data)
     indexController.home({}, res)
   })
   it('Manipula sem num1 e num2', () => {
     let res = {
-      send: function (){}
+      render: function (){}
     }
     let mock = sinon.mock(res)
-    mock.expects('send').once().withArgs('Calculadora')
+    mock.expects('render').once().withArgs('Erro')
     indexController.calc({ query: {} }, res)
   })
 
   it('Manipula sem num1', () => {
     let res = {
-      send: function (){}
+      time: 10,
+      render: function (){}
     }
     let req = {
       query: {
@@ -30,13 +40,13 @@ describe('index Controller', () => {
       }
     }
     let mock = sinon.mock(res)
-    mock.expects('send').once().withArgs('Calculadora')
+    mock.expects('render').once().withArgs('Erro')
     indexController.calc(req, res)
   })
 
   it('Manipula sem num2', () => {
     let res = {
-      send: function (){}
+      render: function (){}
     }
     let req = {
       query: {
@@ -44,13 +54,13 @@ describe('index Controller', () => {
       }
     }
     let mock = sinon.mock(res)
-    mock.expects('send').once().withArgs('Calculadora')
+    mock.expects('render').once().withArgs('Erro')
     indexController.calc(req, res)
   })
 
-  it('Manipula com num1 e num2', () => {
+  it('Calcs', () => {
     let res = {
-      send: function (){}
+      render: function (){}
     }
     let req = {
       query:{
@@ -59,7 +69,7 @@ describe('index Controller', () => {
       }
     }
     let mock = sinon.mock(res)
-    mock.expects('send').once().withArgs('A soma é:30')
+    mock.expects('render').once().withArgs('calc', {soma: 30})
     indexController.calc(req, res)
   })
  })

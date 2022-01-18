@@ -1,5 +1,13 @@
 const home = (req, res) => {
-  res.send('Eu sou FULLSTACK')
+  res.render('home', {
+    lista: ['Rogerio', 'Gomes', 'Teste'],
+    animais: [
+     { name: 'Cachorro' },
+     { name: 'Gato' },
+     { name: 'Galinha' },
+     { name: 'Cavalo' }
+    ]
+  })
 }
 const pagina1 = (req, res) => {
   res.send('Eu sou MASSA')
@@ -9,9 +17,9 @@ const calc = (req, res) => {
   if(req.query.num1 && req.query.num2){
     const { num1, num2 } = req.query
     const soma = parseFloat(num1) + parseFloat(num2)
-    res.send('A soma é:'  + soma)
+    res.render('calc', { soma } )
   }else{
-  res.send('Calculadora')
+  res.render('Erro')
 }
 }
 const par = (req, res) => {
